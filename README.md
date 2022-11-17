@@ -1,6 +1,8 @@
 # randeer
 
-![logo](assets/images/logo.png)
+<p align="center">
+    <img src="assets/images/logo.png"/>
+</p>
 
 A simple randomization library
 
