@@ -1,5 +1,7 @@
 # randeer
 
+![logo](assets/images/logo.png)
+
 A simple randomization library
 
 ## Build
