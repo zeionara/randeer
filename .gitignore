@@ -1,0 +1,8 @@
+tags
+CMakeFiles/
+**/*.swp
+release/
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+install_manifest.txt
