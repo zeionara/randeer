@@ -1,11 +1,61 @@
 #include <iostream>
 #include <functional>
+#include <unordered_map>
 
 #include "Randomizer.h"
 // #include "utils/collection.h"
 #include "lcg.h"
 
+unordered_map<long, Randomizer*> randomizers;
+
 using namespace std;
+
+enum RandomizerType {
+    DEFAULT_LOOPING = 0
+};
+
+extern "C"
+void init(long id, long seed, long type) {
+    Randomizer* randomizer;
+
+    if (auto existing_randomizer = randomizers.find(id); existing_randomizer != randomizers.end()) {
+        printf("Already initialized randomizer with id %ld", id);
+        throw "Cannot overwrite existing randomizer";
+    }
+
+    switch (type) {
+        case DEFAULT_LOOPING:
+            randomizer = new LoopingRandomizer(new DefaultRandomizationState(seed));
+            break;
+    }
+
+    randomizers[id] = randomizer;
+}
+
+extern "C"
+void init_in_interval_excluding_task(long id, long min, long max, long* excluded, long length) {
+    Randomizer* randomizer;
+
+    if (auto existing_randomizer = randomizers.find(id); existing_randomizer == randomizers.end()) {
+        printf("Cannot find randomizer with id %ld", id);
+        throw "Cannot find randomizer";
+    } else
+        existing_randomizer->second->initNextInIntervalExcludingContext(min, max, excluded, length);
+}
+
+extern "C"
+long next(long id) {
+    Randomizer* randomizer;
+
+    if (auto existing_randomizer = randomizers.find(id); existing_randomizer == randomizers.end()) {
+        printf("Cannot find randomizer with id %ld", id);
+        throw "Cannot find randomizer";
+    } else
+        return existing_randomizer->second->next();
+}
+
+
+// deprecated
 
 extern "C"
 void sample(long number = 0) {
