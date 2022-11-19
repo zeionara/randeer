@@ -1,7 +1,8 @@
 #include <iostream>
 #include <functional>
 
-#include "utils/collection.h"
+#include "Randomizer.h"
+// #include "utils/collection.h"
 #include "lcg.h"
 
 using namespace std;
@@ -15,6 +16,16 @@ extern "C"
 void seed(long seed = 0) {
     srand(seed);
     lastNumber = seed;
+}
+
+extern "C"
+long sample_by_looping_randomizer(long min, long max, long* excluded, long length) {
+    // return 10;
+    // Randomizer* randomizer = new DefaultLoopingRandomizer(17);
+    Randomizer* randomizer = new LoopingRandomizer(new DefaultRandomizationState(17));
+
+    randomizer->initNextInIntervalExcludingContext(min, max, excluded, length);
+    return randomizer->next();
 }
 
 extern "C"
