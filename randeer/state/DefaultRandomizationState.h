@@ -6,7 +6,6 @@
 #include"RandomizationState.h"
 
 struct DefaultRandomizationState: RandomizationState {
-    long state;
 
     DefaultRandomizationState() {
         reset(0);
