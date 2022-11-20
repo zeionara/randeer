@@ -6,10 +6,10 @@
 #include"LcgRandomizationState.h"
 
 extern
-long JAVA_LIKE_LCG_MULTIPLIER, JAVA_LIKE_LCG_INCREMENT, JAVA_LIKE_LCG_MODULUS;
+unsigned long long JAVA_LIKE_LCG_MULTIPLIER, JAVA_LIKE_LCG_INCREMENT, JAVA_LIKE_LCG_MODULUS;
 
 struct JavaLikeLcgRandomizationState: LcgRandomizationState {
-    long multiplier, increment, modulus;
+    unsigned long long multiplier, increment, modulus;
 
     JavaLikeLcgRandomizationState(): LcgRandomizationState(JAVA_LIKE_LCG_MULTIPLIER, JAVA_LIKE_LCG_INCREMENT, JAVA_LIKE_LCG_MODULUS) {};
 

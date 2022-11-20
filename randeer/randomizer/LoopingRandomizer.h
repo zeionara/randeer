@@ -34,11 +34,12 @@ struct LoopingRandomizer: Randomizer {
         while (true) {
             number = context->min + this->state->sample() % context->diff;
 
+            // cout << number << endl;
+
             if (context->excluded_items.find(number) == context->excluded_items.end()) {
                 return number;
             }
         }
-
 
         return number;
     }

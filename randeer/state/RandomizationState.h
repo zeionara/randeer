@@ -1,8 +1,10 @@
 #ifndef STATE_RANDOMIZATION_STATE_H
 #define STATE_RANDOMIZATION_STATE_H
 
+#include <iostream>
+
 struct RandomizationState {
-    long state;
+    long long state;
 
     RandomizationState() {
         reset(0);
@@ -13,7 +15,9 @@ struct RandomizationState {
     }
 
     long reset(long seed) {
+        // std::cout << "resetting state" << std::endl;
         this->state = seed;
+        // std::cout << this->state << std::endl;
         return seed;
     }
 

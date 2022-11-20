@@ -22,7 +22,9 @@ void init(long id, long seed, long type) {
     Randomizer* randomizer;
 
     if (auto existing_randomizer = randomizers.find(id); existing_randomizer != randomizers.end()) {
-        printf("Already initialized randomizer with id %ld", id);
+        cout << endl;
+        printf("Already initialized randomizer with id %ld, cannot overwrite it", id);
+        cout << endl;
         throw "Cannot overwrite existing randomizer";
     }
 
@@ -43,7 +45,9 @@ void init_in_interval_excluding_task(long id, long min, long max, long* excluded
     Randomizer* randomizer;
 
     if (auto existing_randomizer = randomizers.find(id); existing_randomizer == randomizers.end()) {
+        cout << endl;
         printf("Cannot find randomizer with id %ld", id);
+        cout << endl;
         throw "Cannot find randomizer";
     } else
         existing_randomizer->second->initNextInIntervalExcludingContext(min, max, excluded, length);
@@ -54,7 +58,9 @@ long next(long id) {
     Randomizer* randomizer;
 
     if (auto existing_randomizer = randomizers.find(id); existing_randomizer == randomizers.end()) {
+        cout << endl;
         printf("Cannot find randomizer with id %ld", id);
+        cout << endl;
         throw "Cannot find randomizer";
     } else
         return existing_randomizer->second->next();

@@ -18,7 +18,8 @@ struct Randomizer {
          this->state = state;
      }
  
-     long sample() {
+     // long sample() {
+     long next() {
          switch (task) {
              case IN_INTERVAL_EXCLUDING:
                  return nextInIntervalExcluding();
@@ -27,12 +28,15 @@ struct Randomizer {
                  printf("Wrong task identifier %u, cannot initialize randomization task", task);
                  throw "Cannot initialize randomization task";
          }
-
      }
  
-     long next() {
-         return this->state->reset(sample());
-     }
+     // long next() {
+     //     long value = sample();
+     //     // cout << "In method randomizer.next" << endl;
+     //     // cout << value << endl;
+     //     // return this->state->reset(value);
+     //     return value;
+     // }
  
      void setTask(RandomizationTask task, void* context) {
          this->task = task;
