@@ -2,8 +2,9 @@
 #include <functional>
 #include <unordered_map>
 
-#include "Randomizer.h"
-// #include "utils/collection.h"
+#include "randomizer/LoopingRandomizer.h"
+#include "state/DefaultRandomizationState.h"
+
 #include "lcg.h"
 
 unordered_map<long, Randomizer*> randomizers;
