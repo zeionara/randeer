@@ -10,7 +10,7 @@
 
 extern "C"
 long sample_default_by_looping_using_objects(long min, long max, long* excluded, long length) {
-    Randomizer* randomizer = new LoopingRandomizer(new DefaultRandomizationState(randomizerSeed));
+    Randomizer<long>* randomizer = new LoopingRandomizer<long>(new DefaultRandomizationState<long>(randomizerSeed));
 
     randomizer->initNextInIntervalExcludingContext(min, max, excluded, length);
     return randomizer->next();
@@ -18,7 +18,7 @@ long sample_default_by_looping_using_objects(long min, long max, long* excluded,
 
 extern "C"
 long sample_default_n_by_looping_without_init_using_objects(long n, long min, long max, long* excluded, long length) {
-    Randomizer* randomizer = new LoopingRandomizer(new DefaultRandomizationState(randomizerSeed));
+    Randomizer<long>* randomizer = new LoopingRandomizer<long>(new DefaultRandomizationState<long>(randomizerSeed));
 
     randomizer->initNextInIntervalExcludingContext(min, max, excluded, length);
 

@@ -8,7 +8,7 @@
 
 #include "lcg.h"
 
-unordered_map<long, Randomizer*> randomizers;
+unordered_map<long, Randomizer<long>*> randomizers;
 
 using namespace std;
 
@@ -19,7 +19,7 @@ enum RandomizerType {
 
 extern "C"
 void init(long id, long seed, long type) {
-    Randomizer* randomizer;
+    Randomizer<long>* randomizer;
 
     if (auto existing_randomizer = randomizers.find(id); existing_randomizer != randomizers.end()) {
         cout << endl;
@@ -30,10 +30,10 @@ void init(long id, long seed, long type) {
 
     switch (type) {
         case DEFAULT_LOOPING:
-            randomizer = new LoopingRandomizer(new DefaultRandomizationState(seed));
+            randomizer = new LoopingRandomizer<long>(new DefaultRandomizationState<long>(seed));
             break;
         case JAVA_LOOPING:
-            randomizer = new LoopingRandomizer(new JavaLikeLcgRandomizationState(seed));
+            randomizer = new LoopingRandomizer<long>(new JavaLikeLcgRandomizationState<long>(seed));
             break;
     }
 
@@ -42,8 +42,6 @@ void init(long id, long seed, long type) {
 
 extern "C"
 void init_in_interval_excluding_task(long id, long min, long max, long* excluded, long length) {
-    Randomizer* randomizer;
-
     if (auto existing_randomizer = randomizers.find(id); existing_randomizer == randomizers.end()) {
         cout << endl;
         printf("Cannot find randomizer with id %ld", id);
@@ -55,8 +53,6 @@ void init_in_interval_excluding_task(long id, long min, long max, long* excluded
 
 extern "C"
 long next(long id) {
-    Randomizer* randomizer;
-
     if (auto existing_randomizer = randomizers.find(id); existing_randomizer == randomizers.end()) {
         cout << endl;
         printf("Cannot find randomizer with id %ld", id);
@@ -65,7 +61,6 @@ long next(long id) {
     } else
         return existing_randomizer->second->next();
 }
-
 
 // deprecated
 

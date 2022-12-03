@@ -5,22 +5,23 @@
 
 #include"RandomizationState.h"
 
-struct DefaultRandomizationState: RandomizationState {
+template <typename T>
+struct DefaultRandomizationState: RandomizationState<T> {
 
     DefaultRandomizationState() {
         reset(0);
     };
 
-    DefaultRandomizationState(long seed) {
+    DefaultRandomizationState(long long seed) {
         reset(seed);
     };
 
-    long reset(long seed) {
+    long long reset(long long seed) {
         srand(seed);
-        return RandomizationState::reset(seed);
+        return RandomizationState<T>::reset(seed);
     }
 
-    long sample() {
+    T sample() {
         return rand();
     }
 };

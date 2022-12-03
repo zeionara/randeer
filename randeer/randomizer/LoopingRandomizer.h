@@ -15,24 +15,25 @@ struct InIntervalExcludingLoopingRandomizationTaskContext {
     }
 };
 
-struct LoopingRandomizer: Randomizer {
+template <typename T>
+struct LoopingRandomizer: Randomizer<T> {
 
-    LoopingRandomizer(RandomizationState* state): Randomizer(state) {}
+    LoopingRandomizer(RandomizationState<T>* state): Randomizer<T>(state) {}
 
-    virtual void initNextInIntervalExcludingContext(long min, long max, long* excluded, long length) {
-        setTask(
+    virtual void initNextInIntervalExcludingContext(T min, T max, T* excluded, long length) {
+        this->setTask(
             IN_INTERVAL_EXCLUDING,
             (void*) new InIntervalExcludingLoopingRandomizationTaskContext(min, max, excluded, length)
         );
     }
 
-    long nextInIntervalExcluding() {
+    T nextInIntervalExcluding() {
         InIntervalExcludingLoopingRandomizationTaskContext* context = (InIntervalExcludingLoopingRandomizationTaskContext*) this->context;
 
-        long number;
+        T number;
         
         while (true) {
-            number = context->min + this->state->sample() % context->diff;
+            number = context->min + this->state->sample(context->diff);
 
             // cout << number << endl;
 

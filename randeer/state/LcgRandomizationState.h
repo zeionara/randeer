@@ -7,14 +7,15 @@
 
 #include"RandomizationState.h"
 
-struct LcgRandomizationState: RandomizationState {
+template <typename T>
+struct LcgRandomizationState: RandomizationState<T> {
     unsigned long long multiplier, increment, modulus;
 
-    LcgRandomizationState(long multiplier, long increment, long modulus): RandomizationState() {
+    LcgRandomizationState(long multiplier, long increment, long modulus): RandomizationState<T>() {
         init(multiplier, increment, modulus);
     };
 
-    LcgRandomizationState(long seed, long multiplier, long increment, long modulus): RandomizationState(seed) {
+    LcgRandomizationState(long seed, long multiplier, long increment, long modulus): RandomizationState<T>(seed) {
         init(multiplier, increment, modulus);
     };
 
@@ -30,10 +31,10 @@ struct LcgRandomizationState: RandomizationState {
         // std::cout << state << std::endl;
         // std::cout << increment << std::endl;
         // std::cout << modulus << std::endl;
-        unsigned long result = (multiplier * state + increment) % modulus;
+        unsigned long result = (multiplier * this->state + increment) % modulus;
         // std::cout << result << std::endl;
         // usleep(1000000);
-        reset(result);
+        this->reset(result);
         return result;
     }
 };

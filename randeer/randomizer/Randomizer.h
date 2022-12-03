@@ -8,13 +8,14 @@
 
 #include "RandomizationTask.h"
 
+template <typename T>
 struct Randomizer {
      void* context;
      RandomizationTask task;
 
-     RandomizationState* state;
+     RandomizationState<T>* state;
  
-     Randomizer(RandomizationState* state) {
+     Randomizer(RandomizationState<T>* state) {
          this->state = state;
      }
  
