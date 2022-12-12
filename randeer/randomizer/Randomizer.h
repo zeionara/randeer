@@ -20,7 +20,7 @@ struct Randomizer {
      }
  
      // long sample() {
-     long next() {
+     T next() {
          switch (task) {
              case IN_INTERVAL_EXCLUDING:
                  return nextInIntervalExcluding();
@@ -44,8 +44,8 @@ struct Randomizer {
          this->context = context;
      }
 
-     virtual void initNextInIntervalExcludingContext(long min, long max, long* excluded, long length) = 0;
-     virtual long nextInIntervalExcluding() = 0;
+     virtual void initNextInIntervalExcludingContext(T min, T max, T* excluded, long length) = 0;
+     virtual T nextInIntervalExcluding() = 0;
 };
 
 #endif

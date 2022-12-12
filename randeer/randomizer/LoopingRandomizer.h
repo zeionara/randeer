@@ -3,12 +3,13 @@
 
 #include "Randomizer.h"
 
+template <typename T>
 struct InIntervalExcludingLoopingRandomizationTaskContext {
-    long diff;
-    long min;
-    unordered_set<long> excluded_items;
+    T diff;
+    T min;
+    unordered_set<T> excluded_items;
 
-    InIntervalExcludingLoopingRandomizationTaskContext(long min, long max, long* excluded, long length) {
+    InIntervalExcludingLoopingRandomizationTaskContext(T min, T max, T* excluded, long length) {
         this->min = min;
         diff = max - min + 1;
         excluded_items = to_set(excluded, length);
@@ -28,7 +29,7 @@ struct LoopingRandomizer: Randomizer<T> {
     }
 
     T nextInIntervalExcluding() {
-        InIntervalExcludingLoopingRandomizationTaskContext* context = (InIntervalExcludingLoopingRandomizationTaskContext*) this->context;
+        InIntervalExcludingLoopingRandomizationTaskContext<T>* context = (InIntervalExcludingLoopingRandomizationTaskContext<T>*) this->context;
 
         T number;
         

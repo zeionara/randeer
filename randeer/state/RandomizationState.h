@@ -5,27 +5,31 @@
 
 template <typename T>
 struct RandomizationState {
-    long long state;
+    unsigned long long state;
 
     RandomizationState() {
         reset(0);
     }
 
-    RandomizationState(long long seed) {
+    RandomizationState(unsigned long long seed) {
         reset(seed);
     }
 
-    long long reset(long long seed) {
+    unsigned long long reset(unsigned long long seed) {
         // std::cout << "resetting state" << std::endl;
         this->state = seed;
         // std::cout << this->state << std::endl;
         return seed;
     }
 
-    virtual T sample() = 0;
+    virtual unsigned long long sample_() = 0;
+
+    T sample() {
+        return sample_();
+    }
 
     T sample(T max) {  // Sample value in interval [0; max)
-        return sample() % max;
+        return sample_() % max;
     }
 
     T sample(T min, T max) {  // Sample value in interval [min; max)

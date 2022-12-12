@@ -11,7 +11,6 @@ using namespace std;
 // unordered_set<long> to_set(long* array, long length);
 
 template <typename T>
-
 unordered_set<T> to_set(T* array, long length) {
     unordered_set<T> items;
 
