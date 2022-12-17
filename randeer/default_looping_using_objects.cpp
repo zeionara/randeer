@@ -22,19 +22,11 @@ long sample_default_n_by_looping_without_init_using_objects(long n, long min, lo
 
     randomizer->initNextInIntervalExcludingContext(min, max, excluded, length);
 
-    long diff = max - min + 1;
-
-    unordered_set<long> excluded_items = to_set(excluded, length);
-
-    long i = 0;
-
-    while (i < n) {
-        long randomNumber = randomizer->next();
-
-        i += 1;
+    for (long i = 0; i < n; i++) {
+        randomizer->next();
     }
 
-    return i;
+    return n;
 }
 
 extern "C"

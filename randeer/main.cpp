@@ -3,6 +3,7 @@
 #include <unordered_map>
 
 #include "randomizer/LoopingRandomizer.h"
+#include "randomizer/ShiftingRandomizer.h"
 #include "state/DefaultRandomizationState.h"
 #include "state/JavaLikeLcgRandomizationState.h"
 
@@ -14,7 +15,8 @@ using namespace std;
 
 enum RandomizerType {
     DEFAULT_LOOPING = 0,
-    JAVA_LOOPING = 1
+    JAVA_LOOPING = 1,
+    DEFAULT_SHIFTING = 2
 };
 
 extern "C"
@@ -34,6 +36,9 @@ void init(long id, long seed, long type) {
             break;
         case JAVA_LOOPING:
             randomizer = new LoopingRandomizer<long>(new JavaLikeLcgRandomizationState<long>(seed));
+            break;
+        case DEFAULT_SHIFTING:
+            randomizer = new ShiftingRandomizer<long>(new DefaultRandomizationState<long>(seed));
             break;
     }
 
