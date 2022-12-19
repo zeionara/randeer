@@ -1,11 +1,11 @@
-#ifndef RANDOMIZER_SHIFTING_RANDOMIZER_H
-#define RANDOMIZER_SHIFTING_RANDOMIZER_H
+#ifndef RANDOMIZER_CONSTRAINED_SHIFTING_RANDOMIZER_H
+#define RANDOMIZER_CONSTRAINED_SHIFTING_RANDOMIZER_H
 
 #include "Randomizer.h"
 
 
 template <typename T>
-struct InIntervalExcludingShiftingRandomizationTaskContext {
+struct InIntervalExcludingConstrainedShiftingRandomizationTaskContext {
     // T diff;
     T min;
     T maxShifted;
@@ -17,12 +17,11 @@ struct InIntervalExcludingShiftingRandomizationTaskContext {
 
     T greatestExcludedMinusNexcluded;
 
-    InIntervalExcludingShiftingRandomizationTaskContext(T min, T max, T* excluded, long length) {
+    InIntervalExcludingConstrainedShiftingRandomizationTaskContext(T min, T max, T* excluded, long length) {
         this->min = min;
-        // diff = max - min + 1;
 
-        excludedItems = sortAndShift(excluded, length, -min);
-        maxShifted = max - min - length;
+        excludedItems = excluded;
+        maxShifted = max - length;
         this->nExcluded = length;
 
         smallestExcluded = excludedItems[0];
@@ -30,38 +29,34 @@ struct InIntervalExcludingShiftingRandomizationTaskContext {
 
         greatestExcludedMinusNexcluded = greatestExcluded - nExcluded;
     }
-
-    ~InIntervalExcludingShiftingRandomizationTaskContext() {
-        delete [] excludedItems;
-    }
 };
 
 template <typename T>
-struct ShiftingRandomizer: Randomizer<T> {
+struct ConstrainedShiftingRandomizer: Randomizer<T> {
 
-    ShiftingRandomizer(RandomizationState<T>* state): Randomizer<T>(state) {}
+    ConstrainedShiftingRandomizer(RandomizationState<T>* state): Randomizer<T>(state) {}
 
     virtual void initNextInIntervalExcludingContext(T min, T max, T* excluded, long length) {
         this->setTask(
             IN_INTERVAL_EXCLUDING,
-            (void*) new InIntervalExcludingShiftingRandomizationTaskContext(min, max, excluded, length)
+            (void*) new InIntervalExcludingConstrainedShiftingRandomizationTaskContext(min, max, excluded, length)
         );
     }
 
     T nextInIntervalExcluding() {
-        InIntervalExcludingShiftingRandomizationTaskContext<T>* context = (InIntervalExcludingShiftingRandomizationTaskContext<T>*) this->context;
+        InIntervalExcludingConstrainedShiftingRandomizationTaskContext<T>* context = (InIntervalExcludingConstrainedShiftingRandomizationTaskContext<T>*) this->context;
 
-        T number = this->state->sample(context->maxShifted + 1);
+        T number = this->state->sample(context->min, context->maxShifted + 1);
 
         // if sampled number on the left to the excluded numbers sequence
 
         if (number < context->smallestExcluded) // <= greatest not excluded before the first excluded
-            return context->min + number;
+            return number;
 
         // if sampled number on the right to the excluded numbers sequence
 
         if (number > context->greatestExcludedMinusNexcluded) // > greatest not excluded before the first excluded in case excluded numbers are consequitive numbers like 1, 2, 3, 4, ...
-            return context->min + number + context->nExcluded;
+            return number + context->nExcluded;
 
         // if sampled number between members of the excluded numbers sequence
 
@@ -79,7 +74,7 @@ struct ShiftingRandomizer: Randomizer<T> {
             }
         }
 
-        return context->min + number + leftmostExcludedIndex + 1;
+        return number + leftmostExcludedIndex + 1;
     }
 };
 
