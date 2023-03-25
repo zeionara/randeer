@@ -1,0 +1,52 @@
+[
+{
+  "directory": "/home/zeio/randeer/build",
+  "command": "/usr/bin/c++ -Drandeer_EXPORTS   -fPIC -pthread -march=native -fPIC -std=gnu++20 -o CMakeFiles/randeer.dir/src/randeer/default_constrained_shifting_using_objects.cpp.o -c /home/zeio/randeer/src/randeer/default_constrained_shifting_using_objects.cpp",
+  "file": "/home/zeio/randeer/src/randeer/default_constrained_shifting_using_objects.cpp"
+},
+{
+  "directory": "/home/zeio/randeer/build",
+  "command": "/usr/bin/c++ -Drandeer_EXPORTS   -fPIC -pthread -march=native -fPIC -std=gnu++20 -o CMakeFiles/randeer.dir/src/randeer/default_looping.cpp.o -c /home/zeio/randeer/src/randeer/default_looping.cpp",
+  "file": "/home/zeio/randeer/src/randeer/default_looping.cpp"
+},
+{
+  "directory": "/home/zeio/randeer/build",
+  "command": "/usr/bin/c++ -Drandeer_EXPORTS   -fPIC -pthread -march=native -fPIC -std=gnu++20 -o CMakeFiles/randeer.dir/src/randeer/default_looping_using_objects.cpp.o -c /home/zeio/randeer/src/randeer/default_looping_using_objects.cpp",
+  "file": "/home/zeio/randeer/src/randeer/default_looping_using_objects.cpp"
+},
+{
+  "directory": "/home/zeio/randeer/build",
+  "command": "/usr/bin/c++ -Drandeer_EXPORTS   -fPIC -pthread -march=native -fPIC -std=gnu++20 -o CMakeFiles/randeer.dir/src/randeer/default_shifting_using_objects.cpp.o -c /home/zeio/randeer/src/randeer/default_shifting_using_objects.cpp",
+  "file": "/home/zeio/randeer/src/randeer/default_shifting_using_objects.cpp"
+},
+{
+  "directory": "/home/zeio/randeer/build",
+  "command": "/usr/bin/c++ -Drandeer_EXPORTS   -fPIC -pthread -march=native -fPIC -std=gnu++20 -o CMakeFiles/randeer.dir/src/randeer/lcg.cpp.o -c /home/zeio/randeer/src/randeer/lcg.cpp",
+  "file": "/home/zeio/randeer/src/randeer/lcg.cpp"
+},
+{
+  "directory": "/home/zeio/randeer/build",
+  "command": "/usr/bin/c++ -Drandeer_EXPORTS   -fPIC -pthread -march=native -fPIC -std=gnu++20 -o CMakeFiles/randeer.dir/src/randeer/lcg_looping.cpp.o -c /home/zeio/randeer/src/randeer/lcg_looping.cpp",
+  "file": "/home/zeio/randeer/src/randeer/lcg_looping.cpp"
+},
+{
+  "directory": "/home/zeio/randeer/build",
+  "command": "/usr/bin/c++ -Drandeer_EXPORTS   -fPIC -pthread -march=native -fPIC -std=gnu++20 -o CMakeFiles/randeer.dir/src/randeer/main.cpp.o -c /home/zeio/randeer/src/randeer/main.cpp",
+  "file": "/home/zeio/randeer/src/randeer/main.cpp"
+},
+{
+  "directory": "/home/zeio/randeer/build",
+  "command": "/usr/bin/c++ -Drandeer_EXPORTS   -fPIC -pthread -march=native -fPIC -std=gnu++20 -o CMakeFiles/randeer.dir/src/randeer/state/constants.cpp.o -c /home/zeio/randeer/src/randeer/state/constants.cpp",
+  "file": "/home/zeio/randeer/src/randeer/state/constants.cpp"
+},
+{
+  "directory": "/home/zeio/randeer/build",
+  "command": "/usr/bin/c++ -Drandeer_EXPORTS   -fPIC -pthread -march=native -fPIC -std=gnu++20 -o CMakeFiles/randeer.dir/src/randeer/utils/sampling.cpp.o -c /home/zeio/randeer/src/randeer/utils/sampling.cpp",
+  "file": "/home/zeio/randeer/src/randeer/utils/sampling.cpp"
+},
+{
+  "directory": "/home/zeio/randeer/build",
+  "command": "/usr/bin/c++    -fPIC -pthread -march=native -std=gnu++20 -o CMakeFiles/foo.dir/test/main.cpp.o -c /home/zeio/randeer/test/main.cpp",
+  "file": "/home/zeio/randeer/test/main.cpp"
+}
+]

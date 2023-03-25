@@ -5,6 +5,7 @@ project(randeer)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -pthread -march=native")
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/release)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
 
