@@ -1,18 +1,19 @@
 #ifndef RANDOMIZER_LOOPING_RANDOMIZER_H
 #define RANDOMIZER_LOOPING_RANDOMIZER_H
 
+#include "../utils/collection.h"
 #include "Randomizer.h"
 
 template <typename T>
 struct InIntervalExcludingLoopingRandomizationTaskContext {
     T diff;
     T min;
-    unordered_set<T> excluded_items;
+    unordered_set<T> excludedItems;
 
     InIntervalExcludingLoopingRandomizationTaskContext(T min, T max, T* excluded, long length) {
         this->min = min;
         diff = max - min + 1;
-        excluded_items = to_set(excluded, length);
+        excludedItems = to_set(excluded, length);
     }
 };
 
@@ -21,7 +22,7 @@ struct LoopingRandomizer: Randomizer<T> {
 
     LoopingRandomizer(RandomizationState<T>* state): Randomizer<T>(state) {}
 
-    virtual void initNextInIntervalExcludingContext(T min, T max, T* excluded, long length) {
+    void initNextInIntervalExcludingContext(T min, T max, T* excluded, long length) {
         this->setTask(
             IN_INTERVAL_EXCLUDING,
             (void*) new InIntervalExcludingLoopingRandomizationTaskContext(min, max, excluded, length)
@@ -38,7 +39,7 @@ struct LoopingRandomizer: Randomizer<T> {
 
             // cout << number << endl;
 
-            if (context->excluded_items.find(number) == context->excluded_items.end()) {
+            if (context->excludedItems.find(number) == context->excludedItems.end()) {
                 return number;
             }
         }

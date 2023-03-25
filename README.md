@@ -101,3 +101,103 @@ class JavaLikeLcgRandomizationState~T~ {
     +RandomState modulus = 281474976710656
 }
 ```
+
+The next UML class diagram demonstrates the implamented randomizers.
+
+```mermaid
+classDiagram
+direction TB
+
+RandomizationState~T~ -- Randomizer~T~: state
+RandomizationTask -- Randomizer~T~: task
+Randomizer~T~ <|-- LoopingRandomizer~T~
+Randomizer~T~ <|-- ShiftingRandomizer~T~
+Randomizer~T~ <|-- ConstrainedShiftingRandomizer~T~
+
+LoopingRandomizer~T~ -- InIntervalExcludingLoopingRandomizationTaskContext~T~: context
+ShiftingRandomizer~T~ -- InIntervalExcludingShiftingRandomizationTaskContext~T~: context
+ConstrainedShiftingRandomizer~T~ -- InIntervalExcludingConstrainedShiftingRandomizationTaskContext~T~: context
+
+class RandomizationState~T~ {
+    -sample(): RandomState
+    +RandomState state
+    +reset(RandomState seed)
+    +sample(): T
+    +sample(T max): T
+    +sample(T min, T max): T
+}
+
+class RandomizationTask {
+    <<enum>>
+    IN_INTERVAL_EXCLUDING
+}
+
+class Randomizer~T~ {
+    -void* context
+    +next(): T
+    +setTask(RandomizationTask task, void* context)
+    +initNextInIntervalExcludingContext(T min, T max, T* excluded, long length)*
+    +nextInIntervalExcluding()*: T
+}
+
+class InIntervalExcludingLoopingRandomizationTaskContext~T~ {
+    +T diff
+    +T min
+    +unordered_set~T~ excludedItems
+}
+
+class LoopingRandomizer~T~ {
+    +initNextInIntervalExcludingContext(T min, T max, T* excluded, long length)
+    +nextInIntervalExcluding(): T
+}
+
+class InIntervalExcludingShiftingRandomizationTaskContext~T~ {
+    T min
+    T maxShifted
+    T* excludedItems
+    long nExcluded
+
+    T smallestExcluded
+    T greatestExcluded
+
+    T greatestExcludedMinusNexcluded
+}
+
+class ShiftingRandomizer~T~ {
+    +initNextInIntervalExcludingContext(T min, T max, T* excluded, long length)
+    +nextInIntervalExcluding(): T
+}
+
+class InIntervalExcludingConstrainedShiftingRandomizationTaskContext~T~ {
+    T min
+    T maxShifted
+    T* excludedItems
+    long nExcluded
+
+    T smallestExcluded
+    T greatestExcluded
+
+    T greatestExcludedMinusNexcluded
+}
+
+class ConstrainedShiftingRandomizer~T~ {
+    +initNextInIntervalExcludingContext(T min, T max, T* excluded, long length)
+    +nextInIntervalExcluding(): T
+}
+```
+
+The following diagram depicts the structure of the `randeer/utils` subpackage:
+
+```mermaid
+classDiagram
+direction TB
+
+class Sampling {
+    sampleN(long n, callable sample)
+}
+
+class Collection {
+    toSet(T* items, long length): unordered_set~T~
+    sortAndShift(T* items, long& length, T offset)
+}
+```

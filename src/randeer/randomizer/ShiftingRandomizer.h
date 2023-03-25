@@ -1,6 +1,7 @@
 #ifndef RANDOMIZER_SHIFTING_RANDOMIZER_H
 #define RANDOMIZER_SHIFTING_RANDOMIZER_H
 
+#include "../utils/collection.h"
 #include "Randomizer.h"
 
 
