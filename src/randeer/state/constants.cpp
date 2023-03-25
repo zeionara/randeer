@@ -1,3 +1,5 @@
-unsigned long long JAVA_LIKE_LCG_MULTIPLIER = 25214903917;
-unsigned long long JAVA_LIKE_LCG_INCREMENT = 11;
-unsigned long long JAVA_LIKE_LCG_MODULUS = 281474976710656;  // 2 ^ 48
+#include "RandomizationState.h"
+
+random_state_t JAVA_LIKE_LCG_MULTIPLIER = 25214903917;
+random_state_t JAVA_LIKE_LCG_INCREMENT = 11;
+random_state_t JAVA_LIKE_LCG_MODULUS = 281474976710656;  // 2 ^ 48

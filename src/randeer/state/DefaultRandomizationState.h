@@ -12,18 +12,20 @@ struct DefaultRandomizationState: RandomizationState<T> {
         reset(0);
     };
 
-    DefaultRandomizationState(unsigned long long seed) {
+    DefaultRandomizationState(random_state_t seed) {
         reset(seed);
     };
 
-    unsigned long long reset(unsigned long long seed) {
+    random_state_t reset(random_state_t seed) {
         srand(seed);
         return RandomizationState<T>::reset(seed);
     }
 
-    unsigned long long sample_() {
-        return rand();
-    }
+    private:
+
+        random_state_t sample_() {
+            return rand();
+        }
 };
 
 #endif

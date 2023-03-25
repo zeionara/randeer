@@ -3,26 +3,24 @@
 
 #include <iostream>
 
+using random_state_t = unsigned long long;
+
 template <typename T>
 struct RandomizationState {
-    unsigned long long state;
+    random_state_t state;
 
     RandomizationState() {
         reset(0);
     }
 
-    RandomizationState(unsigned long long seed) {
+    RandomizationState(random_state_t seed) {
         reset(seed);
     }
 
-    unsigned long long reset(unsigned long long seed) {
-        // std::cout << "resetting state" << std::endl;
+    random_state_t reset(random_state_t seed) {
         this->state = seed;
-        // std::cout << this->state << std::endl;
         return seed;
     }
-
-    virtual unsigned long long sample_() = 0;
 
     T sample() {
         return sample_();
@@ -36,6 +34,9 @@ struct RandomizationState {
         return min + sample(max - min);
     }
 
+    private:
+
+        virtual random_state_t sample_() = 0;
 };
 
 #endif
