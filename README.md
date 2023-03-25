@@ -16,23 +16,30 @@ sudo apt-get update && sudo apt-get install cmake
 
 ## Build
 
-1. Create build folder for source files:
+1. Generate a `Makefile`:
 
 ```sh
-mkdir -p build/src
+cmake -B build/src
 ```
 
-2. Generate a `Makefile`:
+2. Compile and install the library
 
 ```sh
-cd build/src
-cmake ../../src
-```
-
-3. Compile and install the library
-
-```sh
-sudo make install
+sudo make install -C build/src
 ```
 
 The library will be available at `/usr/lib/librandeer.so`
+
+## Test
+
+After building the project, tests can be run using the following command:
+
+```sh
+ctest --test-dir build/src
+```
+
+To recompile the project and run tests use the following command:
+
+```sh
+./tools/test.sh
+```
