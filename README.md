@@ -263,4 +263,6 @@ class DefaultConstrainedShiftingUsingObjects {
 
 The following diagram describes communication between user and system during random numbers generation using objective interface:
 
-![communication diagram](assets/diagrams/communication.svg)
+<p align="center">
+    <img src="assets/diagrams/communication.jpg" alt="communication diagram"/>
+</p>
