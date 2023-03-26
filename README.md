@@ -255,7 +255,7 @@ class DefaultShiftingUsingObjects {
 }
 
 class DefaultConstrainedShiftingUsingObjects {
-    sample_default_by_constrained_using_objects(long min, long max, long* excluded, long length)
+    sample_default_by_constrained_shifting_using_objects(long min, long max, long* excluded, long length)
     sample_default_n_by_constrained_shifting_without_init_using_objects(long n, long min, long max, long* excluded, long length)
     sample_default_n_by_constrained_shifting_with_init_using_objects(long n, long min, long max, long* excluded, long length)
 }
@@ -265,4 +265,16 @@ The following diagram describes communication between user and system during ran
 
 <p align="center">
     <img src="assets/diagrams/communication.jpg" alt="communication diagram"/>
+</p>
+
+The diagram below describes the flow of the functional api utilization - you just pick the function that best fits your needs and call it:
+
+<p align="center">
+    <img src="assets/diagrams/activity-functional.jpg" alt="functional api activity diagram"/>
+</p>
+
+The next diagram describes the sequence of events for choosing a function name:
+
+<p align="center">
+    <img src="assets/diagrams/activity-functional-pick.jpg" alt="functional api activity diagram (picking function)"/>
 </p>
