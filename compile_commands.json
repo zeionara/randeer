@@ -46,7 +46,17 @@
 },
 {
   "directory": "/home/zeio/randeer/build",
-  "command": "/usr/bin/c++    -fPIC -pthread -march=native -std=gnu++20 -o CMakeFiles/foo.dir/test/main.cpp.o -c /home/zeio/randeer/test/main.cpp",
-  "file": "/home/zeio/randeer/test/main.cpp"
+  "command": "/usr/bin/c++    -fPIC -pthread -march=native -std=gnu++20 -o CMakeFiles/LcgRandomizationState.dir/test/LcgRandomizationState.cpp.o -c /home/zeio/randeer/test/LcgRandomizationState.cpp",
+  "file": "/home/zeio/randeer/test/LcgRandomizationState.cpp"
+},
+{
+  "directory": "/home/zeio/randeer/build",
+  "command": "/usr/bin/c++    -fPIC -pthread -march=native -std=gnu++20 -o CMakeFiles/JavaLikeLcgRandomizationState.dir/test/JavaLikeLcgRandomizationState.cpp.o -c /home/zeio/randeer/test/JavaLikeLcgRandomizationState.cpp",
+  "file": "/home/zeio/randeer/test/JavaLikeLcgRandomizationState.cpp"
+},
+{
+  "directory": "/home/zeio/randeer/build",
+  "command": "/usr/bin/c++    -fPIC -pthread -march=native -std=gnu++20 -o CMakeFiles/ShiftingRandomizer.dir/test/ShiftingRandomizer.cpp.o -c /home/zeio/randeer/test/ShiftingRandomizer.cpp",
+  "file": "/home/zeio/randeer/test/ShiftingRandomizer.cpp"
 }
 ]
