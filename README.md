@@ -260,3 +260,7 @@ class DefaultConstrainedShiftingUsingObjects {
     sample_default_n_by_constrained_shifting_with_init_using_objects(long n, long min, long max, long* excluded, long length)
 }
 ```
+
+The following diagram describes communication between user and system during random numbers generation using objective interface:
+
+![communication diagram](assets/diagrams/communication.svg)
