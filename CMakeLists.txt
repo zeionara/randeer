@@ -34,4 +34,6 @@ function(push_test name path)
     add_test(NAME ${name} COMMAND ${name})
 endfunction()
 
-push_test(foo main.cpp)
+push_test(LcgRandomizationState LcgRandomizationState.cpp)
+push_test(JavaLikeLcgRandomizationState JavaLikeLcgRandomizationState.cpp)
+push_test(ShiftingRandomizer ShiftingRandomizer.cpp)

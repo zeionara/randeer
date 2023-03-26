@@ -201,3 +201,62 @@ class Collection {
     sortAndShift(T* items, long& length, T offset)
 }
 ```
+
+There is also a list of functions provided through static library interface. The functions can be grouped by containing file and listed as follows:
+
+```mermaid
+classDiagram
+direction LR
+
+Main -- RandomizerType
+LcgLooping -- Lcg
+
+class Lcg {
+    long lastNumber
+    long randomizerSeed
+    random(): long
+}
+
+class DefaultLooping {
+    sample_default_by_looping(long min, long max, long* excluded, long length)
+    sample_default_n_by_looping_without_init(long n, long min, long max, long* excluded, long length)
+    sample_default_n_by_looping_with_init(long n, long min, long max, long* excluded, long length)
+}
+
+class DefaultLoopingUsingObjects {
+    sample_default_by_looping_using_objects(long min, long max, long* excluded, long length)
+    sample_default_n_by_looping_without_init_using_objects(long n, long min, long max, long* excluded, long length)
+    sample_default_n_by_looping_with_init_using_objects(long n, long min, long max, long* excluded, long length)
+}
+
+class LcgLooping {
+    sample_lcg_by_looping(long min, long max, long* excluded, long length)
+    sample_lcg_n_by_looping_without_init(long n, long min, long max, long* excluded, long length)
+    sample_lcg_n_by_looping_with_init(long n, long min, long max, long* excluded, long length)
+}
+
+class RandomizerType {
+    <<enum>>
+    DEFAULT_LOOPING
+    JAVA_LOOPING
+    DEFAULT_SHIFTING
+}
+
+class Main {
+    init(long id, long seed, RandomizerType type)
+    init_in_interval_excluding_task(long id, long min, long max, long* excluding, long length)
+    next(long id): long
+}
+
+class DefaultShiftingUsingObjects {
+    sample_default_by_shifting_using_objects(long min, long max, long* excluded, long length)
+    sample_default_n_by_shifting_without_init_using_objects(long n, long min, long max, long* excluded, long length)
+    sample_default_n_by_shifting_with_init_using_objects(long n, long min, long max, long* excluded, long length)
+}
+
+class DefaultConstrainedShiftingUsingObjects {
+    sample_default_by_constrained_using_objects(long min, long max, long* excluded, long length)
+    sample_default_n_by_constrained_shifting_without_init_using_objects(long n, long min, long max, long* excluded, long length)
+    sample_default_n_by_constrained_shifting_with_init_using_objects(long n, long min, long max, long* excluded, long length)
+}
+```

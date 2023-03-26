@@ -28,6 +28,7 @@ struct LcgRandomizationState: RandomizationState<T> {
         }
 
         random_state_t sample_() {
+            // std::cout << "state = " << this->state << std::endl;
             random_state_t result = (multiplier * this->state + increment) % modulus;
             this->reset(result);
             return result;

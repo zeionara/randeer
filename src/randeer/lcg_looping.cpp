@@ -2,6 +2,7 @@
 
 #include "utils/collection.h"
 #include "utils/sampling.h"
+#include "lcg.h"
 
 extern "C"
 long sample_lcg_by_looping(long min, long max, long* excluded, long length) {
